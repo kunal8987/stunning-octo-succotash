@@ -1,12 +1,22 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "name": "backend",
+    "version": "1.0.0",
+    "description": "This Is The Resume Builder Web App",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "nodemon index.js"
+    },
+    "keywords": [
+        "Javascript",
+        "Express",
+        "Mongoose",
+        "MongoDB"
+    ],
+    "author": "KD",
+    "license": "ISC",
+    "devDependencies": {
+        "nodemon": "^3.1.3",
+        "prettier": "^3.3.1"
+    }
 }
