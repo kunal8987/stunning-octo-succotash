@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 const { connection } = require("./Database/db");
 const dotenv = require("dotenv");
+const { authRouter } = require("./Routes/Auth.routes");
 
 // ENV CONFIGURATION
 dotenv.config();
@@ -31,6 +32,21 @@ app.use(
 app.use(express.static("Public"));
 
 app.use(cookieParser());
+
+// ERROR HANDLING MIDDLEWARE
+app.use((error, req, res, next) => {
+    let statusCode = error.statusCode || 500;
+    let message = error.message || "Internal Server Error";
+    return res.status(statusCode).send({
+        success: false,
+        statusCode: statusCode,
+        message,
+    });
+});
+
+// API ROUTES
+
+app.use("/api/v1/auth", authRouter);
 
 //LISTING THE SERVER
 let port = process.env.PORT || 4500;
