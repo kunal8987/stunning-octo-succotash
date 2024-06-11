@@ -2,9 +2,10 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const { connection } = require("./Database/db");
+const { connection } = require("./src/Database/db");
 const dotenv = require("dotenv");
-const { authRouter } = require("./Routes/Auth.routes");
+const { authRouter } = require("./src/Routes/Auth.routes");
+const { userRouter } = require("./src/Routes/User.routes");
 
 // ENV CONFIGURATION
 dotenv.config();
@@ -47,6 +48,7 @@ app.use((error, req, res, next) => {
 // API ROUTES
 
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/user", userRouter);
 
 //LISTING THE SERVER
 let port = process.env.PORT || 4500;
