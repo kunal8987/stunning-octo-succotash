@@ -7,12 +7,14 @@ const registerUser = async (req, res, next) => {
     try {
         let { userName, email, password } = req.body;
 
-        let existingUser = await Auth.findOne({ userName, email });
+        let existingUser = await Auth.findOne({
+            $or: [{ userName }, { email }],
+        });
 
         if (existingUser) {
-            res.status(200).send({
-                success: true,
-                message: "User Already Registered",
+            res.status(401).send({
+                success: false,
+                message: "User With Email Or Username Already Exists",
             });
         }
 
