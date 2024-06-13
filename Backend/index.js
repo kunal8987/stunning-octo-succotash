@@ -6,6 +6,8 @@ const { connection } = require("./src/Database/db");
 const dotenv = require("dotenv");
 const { authRouter } = require("./src/Routes/Auth.routes");
 const { userRouter } = require("./src/Routes/User.routes");
+const { educationRoutes } = require("./src/Routes/Education.routes");
+const { workRoute } = require("./src/Routes/Workexpreiance.routes");
 
 // ENV CONFIGURATION
 dotenv.config();
@@ -49,6 +51,8 @@ app.use((error, req, res, next) => {
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/education", educationRoutes);
+app.use("/api/v1/work", workRoute);
 
 //LISTING THE SERVER
 let port = process.env.PORT || 4500;
