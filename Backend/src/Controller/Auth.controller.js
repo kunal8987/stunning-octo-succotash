@@ -83,4 +83,44 @@ const loginUser = async (req, res, next) => {
         console.log("Error From Login User Controller ");
     }
 };
-module.exports = { registerUser, loginUser };
+
+// RESET PASSWORD FUNCTION
+const resetPassword = async (req, res, next) => {
+    try {
+        let { newPassword, conformPassword, email } = req.body;
+
+        //VALIDATE PASSWORD
+        if (newPassword !== conformPassword) {
+            return res.status(404).send({
+                success: false,
+                message: "New Password And Conform Password Do Not Match",
+            });
+        }
+
+        // HASH AND SALT THE PASSWORD
+        const hashedPassword = await bcrypt.hash(newPassword, 7);
+
+        const user = await Auth.findOne({ email });
+        if (!user) {
+            return res
+                .status(404)
+                .send({ success: false, message: "User Not Found" });
+        }
+
+        user.password = hashedPassword;
+
+        await user.save();
+
+        user.password = undefined;
+        res.status(200).send({
+            success: true,
+            message: "Password Updated Successfully",
+            user,
+        });
+    } catch (error) {
+        console.log("Error From Reset Password Controller ");
+        next(error);
+    }
+};
+
+module.exports = { registerUser, loginUser, resetPassword };
