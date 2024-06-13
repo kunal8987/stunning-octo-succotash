@@ -2,14 +2,34 @@ const mongoose = require("mongoose");
 
 const educationSchema = new mongoose.Schema(
     {
-        education: [
-            {
-                institution: { type: String, required: true },
-                degree: { type: String, required: true },
-                major: { type: String, required: true },
-                graduationDate: { type: String, required: true },
-            },
-        ],
+        institution: {
+            type: String,
+            required: true,
+        },
+        degree: {
+            type: String,
+            required: true,
+        },
+        country: {
+            type: String,
+            required: true,
+        },
+        state: {
+            type: String,
+            required: true,
+        },
+        start: {
+            type: String,
+            required: true,
+        },
+        finish: {
+            type: String,
+            required: true,
+        },
+        authId: {
+            type: String,
+            required: true,
+        },
     },
     {
         timestamps: true,
