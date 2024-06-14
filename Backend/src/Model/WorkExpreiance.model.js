@@ -16,7 +16,7 @@ const workSchema = new mongoose.Schema(
         },
         endDate: {
             type: String,
-            required: true,
+            default: "Present",
         },
         description: {
             type: String,
