@@ -1,7 +1,9 @@
 const { User } = require("../Model/User.model");
 
+// CREATE USER FUNCTION
 const createUser = async (req, res, next) => {
     try {
+        // ADDING USER TO DATABASE
         let newUser = new User(req.body);
 
         await newUser.save();
@@ -17,13 +19,24 @@ const createUser = async (req, res, next) => {
     }
 };
 
+// UPDATE USER FUNCTION
 const updateUser = async (req, res, next) => {
     try {
+        //GET ID
         let { userId } = req.params;
-        console.log("userId", userId);
 
+        // VALIDATE ID
+        if (!userId) {
+            return res.status(404).send({
+                success: false,
+                message: "Please Provide ID",
+            });
+        }
+
+        // FINDING DATA IN THE DATABASE
         let user = await User.findOne({ _id: userId });
-        console.log(req.body.authId);
+
+        // AUTHENTIC THE USER AND THE DATA
         if (req.body.authId !== user.authId) {
             res.status(401).send({
                 success: false,
@@ -31,6 +44,7 @@ const updateUser = async (req, res, next) => {
             });
         }
 
+        // UPDATING
         let updatedUser = await User.findByIdAndUpdate(
             { _id: userId },
             req.body,
@@ -48,9 +62,13 @@ const updateUser = async (req, res, next) => {
     }
 };
 
+// GET USER FUNCTION
 const getUser = async (req, res, next) => {
     try {
+        // FINDING THE DATA IN THE DATABASE
         let user = await User.findOne({ authId: req.body.authId });
+
+        // VALIDATE
         if (!user) {
             res.status(400).send({
                 success: false,

@@ -1,11 +1,22 @@
-const express = require('express');
-const { registerUser, loginUser, resetPassword } = require('../Controller/Auth.controller');
+const express = require("express");
 
+// DEPENDENCY FUNCTION IMPORTS
+const {
+    registerUser,
+    loginUser,
+    resetPassword,
+} = require("../Controller/Auth.controller");
+
+// CREATING ROUTES
 const authRouter = express.Router();
 
+// POST ROUTE FOR REGISTER
+authRouter.post("/register", registerUser);
 
-authRouter.post('/register', registerUser )
-authRouter.post('/login', loginUser )
-authRouter.post('/reset-password', resetPassword )
+// POST ROUTE FOR LOGIN
+authRouter.post("/login", loginUser);
 
-module.exports = {authRouter}
+// POST ROUTE FOR RESET PASSWORD
+authRouter.post("/reset-password", resetPassword);
+
+module.exports = { authRouter };
