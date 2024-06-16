@@ -27,6 +27,15 @@ const projectSchema = new mongoose.Schema({
     responsibility: {
         type: String,
     },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+    },
+    authId: {
+        type: String,
+        required: true,
+    },
 });
 
 const Project = mongoose.model("Project", projectSchema);

@@ -5,12 +5,14 @@ const skillsSchema = new mongoose.Schema(
         techSkills: [
             {
                 type: String,
+                authId: String,
             },
         ],
         softSkills: [
             {
                 type: String,
                 required: true,
+                authId: String,
             },
         ],
     },
