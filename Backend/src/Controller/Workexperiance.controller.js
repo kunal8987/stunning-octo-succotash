@@ -68,18 +68,22 @@ const updateWork = async (req, res, next) => {
                 success: false,
                 message: "You Are Not A Authorize Person To Do This Action",
             });
+        } else {
+            // UPDATING
+            let updatedWork = await Work.findByIdAndUpdate(
+                { _id: id },
+                req.body,
+                {
+                    new: true,
+                }
+            );
+
+            return res.status(200).send({
+                success: true,
+                message: "Work Updated successfully",
+                updatedWork,
+            });
         }
-
-        // UPDATING
-        let updatedWork = await Work.findByIdAndUpdate({ _id: id }, req.body, {
-            new: true,
-        });
-
-        return res.status(200).send({
-            success: true,
-            message: "Work Updated successfully",
-            updatedWork,
-        });
     } catch (error) {
         console.log("Error From Update Work Controller");
         next(error);
@@ -109,15 +113,15 @@ const deleteWork = async (req, res, next) => {
                 success: false,
                 message: "You Are Not A Authorize Person To Do This Action",
             });
+        } else {
+            // DELETING
+            await Work.findByIdAndDelete({ _id: id });
+
+            return res.status(200).send({
+                success: true,
+                message: "Work Deleted successfully",
+            });
         }
-
-        // DELETING
-        await Work.findByIdAndDelete({ _id: id });
-
-        return res.status(200).send({
-            success: true,
-            message: "Work Deleted successfully",
-        });
     } catch (error) {
         console.log("Error From Update Work Controller");
         next(error);
