@@ -8,6 +8,8 @@ const { authRouter } = require("./src/Routes/Auth.routes");
 const { userRouter } = require("./src/Routes/User.routes");
 const { educationRoutes } = require("./src/Routes/Education.routes");
 const { workRoute } = require("./src/Routes/Workexpreiance.routes");
+const { projectRouter } = require("./src/Routes/Project.routes");
+const { contactRouter } = require("./src/Routes/Contact.routes");
 
 // ENV CONFIGURATION
 dotenv.config();
@@ -53,6 +55,8 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/education", educationRoutes);
 app.use("/api/v1/work", workRoute);
+app.use("/api/v1/contact", contactRouter);
+app.use("/api/v1/project", projectRouter);
 
 //LISTING THE SERVER
 let port = process.env.PORT || 4500;

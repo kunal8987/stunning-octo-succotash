@@ -68,7 +68,8 @@ const editEducation = async (req, res, next) => {
                 success: false,
                 message: "You Are Not A Authorize Person To Do This Action",
             });
-        } else {
+        }
+        
             // UPDATING
             let updateEducation = await Education.findByIdAndUpdate(
                 { _id: id },
@@ -81,7 +82,7 @@ const editEducation = async (req, res, next) => {
                 message: "Education Updated successfully",
                 updateEducation,
             });
-        }
+        
     } catch (error) {
         console.log("error Form Edit Education Controller");
         next(error);
@@ -108,7 +109,8 @@ const deleteEducation = async (req, res, next) => {
                 success: false,
                 message: "You Are Not A Authorize Person To Do This Action",
             });
-        } else {
+        } 
+
             // DELETION
             await Education.findByIdAndDelete({ _id: req.params.id });
 
@@ -116,7 +118,7 @@ const deleteEducation = async (req, res, next) => {
                 success: true,
                 message: "Education Deleted successfully",
             });
-        }
+        
     } catch (error) {
         console.log("error Form Delete Education Controller");
         next(error);

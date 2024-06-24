@@ -42,7 +42,7 @@ const updateUser = async (req, res, next) => {
                 success: false,
                 message: "You Are Not A Authorize Person To Do This Action",
             });
-        } else {
+        } 
             // UPDATING
             let updatedUser = await User.findByIdAndUpdate(
                 { _id: userId },
@@ -55,7 +55,7 @@ const updateUser = async (req, res, next) => {
                 message: "User Updated Successfully",
                 updatedUser,
             });
-        }
+        
     } catch (error) {
         console.log("Error From Update User Controller");
         next(error);

@@ -19,7 +19,7 @@ const addContact = async (req, res, next) => {
 
 const getContact = async (req, res, next) => {
     try {
-        let contact = await Contact.findById({ authId: req.body.authId });
+        let contact = await Contact.findOne({ authId: req.body.authId });
 
         if (!contact) {
             return res.status(401).send({
@@ -52,28 +52,28 @@ const updateContact = async (req, res, next) => {
 
         let contact = await Contact.findOne({ _id: id });
 
-        if (req.body.authID !== contact.authId) {
+        if (contact.authId !== req.body.authID) {
             return res.status(401).send({
                 success: false,
                 message: "you are not authorized person to do this action ",
             });
-        } else {
-            let updateContact = await Contact.findByIdAndUpdate(
-                { _id: id },
-                req.body,
-                { new: true }
-            );
-
-            return res.status(200).send({
-                success: true,
-                message: "contact updated successfully",
-                updateContact,
-            });
         }
+
+        let updateContact = await Contact.findByIdAndUpdate(
+            { _id: id },
+            req.body,
+            { new: true }
+        );
+
+        return res.status(200).send({
+            success: true,
+            message: "contact updated successfully",
+            updateContact,
+        });
     } catch (error) {
         console.log("Error Form update Contact Controller");
         next(error);
     }
 };
 
-module.exports = { addContact, getContact,updateContact };
+module.exports = { addContact, getContact, updateContact };
