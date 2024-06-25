@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const initialState = {
   email: "",
@@ -17,6 +18,22 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (fromState.email === "" || fromState.password === "") {
+      Swal.fire({
+        title: "Validation Failed",
+        text: "Email And Password Are Required",
+        icon: "warning",
+        timer: 2000,
+      });
+    } else if (fromState.password.length <= 8) {
+      Swal.fire({
+        title: "Validation Failed",
+        text: "Password Must Have 8 Characters Or More",
+        icon: "warning",
+        timer: 2000,
+      });
+    }
     console.log(fromState);
   };
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-
+import Swal from "sweetalert2";
 const initialState = {
   userName: "",
   email: "",
@@ -17,6 +17,26 @@ const Register = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (
+      formState.userName === "" ||
+      formState.email === "" ||
+      formState.password === ""
+    ) {
+      Swal.fire({
+        title: "Validation Failed",
+        text: "All Fields Are Required",
+        icon: "warning",
+        timer: 2000,
+      });
+    } else if (formState.password.length < 8) {
+      Swal.fire({
+        title: "Validation Failed",
+        text: "Password Must Have 8 Characters Or More",
+        icon: "warning",
+        timer: 2000,
+      });
+    }
     console.log(formState);
   };
   return (
