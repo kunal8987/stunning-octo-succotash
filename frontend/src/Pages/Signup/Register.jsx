@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+
+const initialState = {
+  userName: "",
+  email: "",
+  password: "",
+};
 const Register = () => {
+  const [formState, setFormState] = useState(initialState);
+
+  const handleChange = (event) => {
+    let { id, value } = event.target;
+    setFormState({ ...formState, [id]: value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formState);
+  };
   return (
     <section className="bg-[#ccd5ae]">
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -11,7 +28,8 @@ const Register = () => {
           </h2>
           <p className="mt-2 text-center font-bold text-md text-[#780000] hover:text-[#003135] ">
             Already have an account?{" "}
-            <Link to={'/api/google/routes/resumo/login'}
+            <Link
+              to={"/api/google/routes/resumo/login"}
               href="#"
               title=""
               className="font-medium text-black transition-all duration-200 hover:underline"
@@ -19,32 +37,40 @@ const Register = () => {
               Sign In
             </Link>
           </p>
-          <form action="#" method="POST" className="mt-8">
+
+          {/* FROM START HERE  */}
+
+          <form onSubmit={handleSubmit} className="mt-8">
             <div className="space-y-5">
+              {/* USERNAME FIELD  */}
+
               <div>
                 <label
                   htmlFor="name"
                   className="text-base font-medium text-gray-900"
                 >
-                  {" "}
-                  User Name{" "}
+                  UserName
                 </label>
                 <div className="mt-2">
                   <input
                     className="flex h-10 w-full rounded-md border border-gray-500 bg-transparent px-3 py-2 text-sm placeholder:text-gray-700 "
                     type="text"
                     placeholder="User Name"
-                    id="name"
+                    id="userName"
+                    value={formState.userName}
+                    onChange={handleChange}
                   ></input>
                 </div>
               </div>
+
+              {/* EMAIL FIELD  */}
+
               <div>
                 <label
                   htmlFor="email"
                   className="text-base font-medium text-gray-900"
                 >
-                  {" "}
-                  Email address{" "}
+                  Email address
                 </label>
                 <div className="mt-2">
                   <input
@@ -52,17 +78,21 @@ const Register = () => {
                     type="email"
                     placeholder="Email"
                     id="email"
+                    value={formState.email}
+                    onChange={handleChange}
                   ></input>
                 </div>
               </div>
+
+              {/* PASSWORD FIELD  */}
+
               <div>
                 <div className="flex items-center justify-between">
                   <label
                     htmlFor="password"
                     className="text-base font-medium text-gray-900"
                   >
-                    {" "}
-                    Password{" "}
+                    Password
                   </label>
                 </div>
                 <div className="mt-2">
@@ -71,14 +101,16 @@ const Register = () => {
                     type="password"
                     placeholder="Password"
                     id="password"
+                    value={formState.password}
+                    onChange={handleChange}
                   ></input>
                 </div>
               </div>
+
+              {/* SUBMIT BUTTON  */}
+
               <div>
-                <button
-                  type="button"
-                  className="inline-flex w-full items-center justify-center rounded-md bg-[#023047] px-3.5 py-2.5 font-semibold leading-7 text-[#ffb703] "
-                >
+                <button className="inline-flex w-full items-center justify-center rounded-md bg-[#023047] px-3.5 py-2.5 font-semibold leading-7 text-[#ffb703] ">
                   Create Account <ArrowRight className="ml-2" size={16} />
                 </button>
               </div>

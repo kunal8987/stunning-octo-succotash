@@ -4,10 +4,6 @@ import { Link } from "react-router-dom";
 import Navbutton from "./NavButton/Navbutton";
 const menuItems = [
   {
-    name: "Home",
-    href: "#",
-  },
-  {
     name: "About",
     href: "#",
   },
@@ -30,8 +26,9 @@ export function Navbar() {
     <div className=" z-30 w-full bg-[#f1faee] shadow-lg top-0 sticky">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
-         
-          <span className="font-bold text-xl rounded-md p-2 ">Resumo</span>
+          <Link to={"/"}>
+            <span className="font-bold text-xl rounded-md p-2 ">Resumo</span>
+          </Link>
         </div>
         <div className="hidden lg:block">
           <ul className="inline-flex space-x-8">
@@ -48,7 +45,7 @@ export function Navbar() {
           </ul>
         </div>
         <div className="hidden lg:block ">
-        <Navbutton/>
+          <Navbutton />
         </div>
         <div className="lg:hidden">
           <Menu onClick={toggleMenu} className="h-6 w-6 cursor-pointer" />
@@ -59,7 +56,6 @@ export function Navbar() {
               <div className="px-5 pb-6 pt-5">
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center space-x-2">
-                   
                     <span className="font-bold">Resumo</span>
                   </div>
                   <div className="-mr-2">
@@ -81,19 +77,14 @@ export function Navbar() {
                         href={item.href}
                         className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
                       >
-                        <span className="ml-3 text-base font-medium text-gray-900">
+                        <span className="ml-3 pb-2 text-base font-medium text-gray-900">
                           {item.name}
                         </span>
                       </Link>
                     ))}
                   </nav>
                 </div>
-                <button
-                  type="button"
-                  className="mt-4 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-                >
-                  Button text
-                </button>
+              <Navbutton/>
               </div>
             </div>
           </div>

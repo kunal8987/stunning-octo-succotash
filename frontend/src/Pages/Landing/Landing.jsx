@@ -3,7 +3,7 @@ import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import Hero from './Hreo/Hero'
 
-const Landing = () => {
+const Home = () => {
   return (
     <div>
       <Header/>
@@ -13,4 +13,4 @@ const Landing = () => {
   )
 }
 
-export default Landing
+export default Home

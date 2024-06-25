@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Signup/Register";
-import Landing from "../Pages/Landing/Landing";
+import Home from "../Pages/Landing/Landing";
 const Allroutes = () => {
   return (
     <>
@@ -15,7 +15,7 @@ const Allroutes = () => {
       </Routes>
 
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </>
   );
