@@ -23,7 +23,7 @@ export function Navbar() {
   };
 
   return (
-    <div className=" z-30 w-full bg-[#f1faee] shadow-lg top-0 sticky">
+    <div className=" z-30 w-full bg-[#f1faee] border border-b-2 shadow-lg top-0 sticky">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
         <div className="inline-flex items-center space-x-2">
           <Link to={"/"}>
